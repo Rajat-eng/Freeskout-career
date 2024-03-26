@@ -1,0 +1,196 @@
+.jdContainer{
+    position: relative;
+}
+.jdContainerWrapper{
+   background-color: aliceblue;
+   padding-block: 2rem 4rem;
+
+}
+.mainTitle{
+    margin-left: 12%;
+    margin-bottom: 1.5rem;
+    opacity: 0.8;
+    cursor: pointer;
+    font-weight: 500;
+}
+.mainTitle:hover{
+    opacity: 1;
+}
+
+.jdWrapper{
+    width: min(58rem,95%);
+    margin-inline:auto;
+    border-radius: 7px;
+    padding:3rem 3rem;
+    background-color: white;
+    border: 1px solid rgba(255,255,255,0.7);
+    box-shadow: 0px 0px 20px 0px rgba(0,0,0,.04);
+}
+.jdHeading h4{
+    font-size: 18px;
+    font-weight: 600;
+}
+.jdSubHead{
+    margin-top: 1.7rem;
+    display: flex;
+    max-width: 48rem;
+    justify-content: space-between;
+}
+.jdSubHeadChild h6{
+    color: rgba(42, 126, 26, 0.8);
+    font-size: 15px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+}
+
+.jdSubHeadChild h6 span{
+    color: rgba(0, 128, 0, 0.764);
+    font-size: 17px;
+}
+
+
+.jdSubHeadChild p{
+    margin-left: 24px;
+    font-size: 14px;
+    font-weight: 500;
+    color: rgba(12, 67, 116, 0.889);
+}
+.aboutComHeading,.aboutJobHeading,.skillsReqHeading,.perksHeading{
+    margin-top: 1rem;
+    font-size: 18px;
+}
+.aboutCom{
+    margin-top: 2rem;
+}
+.aboutJob{
+    margin-top: 3rem;
+}
+.aboutComPara,.aboutJobPara{
+    margin-top: 20px;
+    opacity: 0.7;
+    font-size: 14px;
+    letter-spacing: 0.6px;
+}
+.skillsReq{
+    margin-top: 40px;
+}
+.skillsChild{
+    margin-top: 14px;
+    display: flex;
+    gap: 1rem;
+}
+.skillsChild h6{
+    color: white;
+    background-color: rgba(42, 95, 15, 0.8);
+    padding: 8px 20px;
+    border-radius:30px;
+    font-size: 13px;
+    text-transform: uppercase;
+}
+.applyBtn{
+    text-align: center;
+    margin-top: 2.5rem;
+}
+
+.dltPopUp{
+    position: fixed;
+    top: 0%;
+    left: 0%;
+    right: 0%;
+    bottom: 0%;
+    background-color: rgba(0,0,0,0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.dltPopUpWrapper{
+    padding: 2rem;
+    border-radius: 6px;
+    background-color: white;
+    color: black;
+}
+.dltPopUpBtn button{
+    width: 5rem;
+    margin-right: 10px;
+    margin-top: 1rem;
+}
+.finaleBtn{
+    margin-top: -4rem;
+    margin-bottom: 3rem;
+    text-align: center;
+}
+
+
+.finaleApplyCont{
+    background-color: rgba(0, 0, 0, 0.675);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.finaleWrapper{
+    width: 440px;
+    background-color: white;
+    border-radius: 10px;
+    padding: 28px 36px;
+    text-align: center;
+}
+
+.finaleWrapper h5{
+    font-size: 20px;
+}
+
+.finaleWrapper p{
+    margin-block: 1rem 2rem;
+    font-size: 13px;
+    text-align: center;
+}
+
+
+
+@media(max-width : 1200px){
+    .mainTitle{
+        margin-left: 6%;
+    }
+}
+
+@media(max-width : 900px){
+    .jdSubHead{
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap:2rem 1rem;
+    }
+}
+
+@media(max-width : 660px){
+    .jdWrapper{
+        padding: 2rem;
+    }
+    .jdSubHeadChild h6{
+        font-size: 13px;
+    }
+    .jdSubHeadChild h6 span{
+        font-size: 13px;
+    }
+    .jdSubHead{
+        gap: 22px 10px;
+    }
+}
+
+@media(max-width : 450px){
+    .jdSubHead{
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media(max-width: 360px){
+    .jdWrapper{
+        padding:22px 1rem;
+    }
+}

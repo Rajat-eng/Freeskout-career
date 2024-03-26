@@ -1,0 +1,80 @@
+.applPortfolio {
+  width: 100%;
+  margin-bottom: 5rem;
+  color: black;
+}
+
+.apWrapper {
+  background-color: rgba(78, 3, 3, 0.605);
+  border-radius: 10px;
+  padding: 1rem;
+  margin: auto;
+  margin-top: 2rem;
+  max-width: 44rem;
+}
+
+.rowDiv {
+  background-color: rgba(231, 255, 230, 0.847);
+  margin: 1rem 0;
+  border-radius: 6px;
+}
+.rowDiv:last-child {
+  margin: 0;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  background-color: rgba(237, 219, 196, 0.779);
+  padding: 7px 7px;
+  border-radius: 6px;
+}
+.apTitle {
+  /* text-align: center; */
+  padding-left: 1rem;
+  font-size: 22px;
+  padding-top: 4px;
+}
+.personalDetails {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 1rem;
+}
+.personalDetails p {
+  margin-bottom: 8px;
+}
+.icons {
+  font-size: 17px;
+  margin-right: 10px;
+  color: rgb(5, 112, 5);
+}
+.pdTitle {
+  margin-top: -14px;
+  font-size: 22px;
+  text-transform: capitalize;
+}
+.addressImg {
+  max-width: 14rem;
+  margin-top: -1.5rem;
+}
+.addressImg img {
+  width: 100%;
+}
+.studyStartEnd {
+  display: flex;
+  gap: 1rem;
+}
+.applPortfolio span {
+  font-weight: 500;
+}
+.pdfDownloadBtn {
+  margin-top: 10px;
+  border: 1.5px solid rgba(0, 56, 242, 0.722);
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-size: 14px;
+  background-color: inherit;
+}
+.resumeContainer {
+  width: fit-content;
+}

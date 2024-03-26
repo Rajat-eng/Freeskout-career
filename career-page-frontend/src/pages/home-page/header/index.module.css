@@ -1,0 +1,342 @@
+.header {
+  position: relative;
+  background-color: white !important;
+
+}
+
+
+.profileMenu {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  position: relative;
+}
+
+.profileName {
+  text-transform: capitalize;
+}
+
+.profileDetails h6:last-child {
+  font-size: 10px;
+}
+
+.dp {
+  background-color: rgb(123, 192, 220);
+  color: #062c2c;
+  font-size: 15px;
+  margin-right: 7px;
+  text-transform: uppercase;
+  font-weight: bold;
+  padding: 8px 8.5px;
+  border-radius: 50%;
+  font-family: "Merriweather", serif;
+}
+
+.dropdownMenu {
+  display: block;
+  height: 0em;
+  overflow: hidden;
+  width: 13rem;
+  position: absolute;
+  top: 54px;
+  right: -30px;
+  background-color: white;
+  margin-top: 4px;
+  box-shadow: 1px 0px 16px 0px rgba(0, 0, 0, 0.3);
+  border-radius: 2px;
+  transition: all 0.3s cubic-bezier(0.57, 0.21, 0.69, 1.25);
+  z-index: 99;
+}
+
+
+
+.dropdownMenu::before {
+  content: "";
+  position: absolute;
+  top: -26px;
+  right: 50px;
+  border-width: 14px;
+  border-style: solid;
+  border-color: transparent transparent white transparent;
+}
+
+.dropdownMenu ul li {
+  height: fit-content;
+  list-style: none;
+  margin: 5px;
+  border-radius: 2px;
+  color: #102770;
+  font-size: 14px;
+}
+.dropdownMenu ul li:last-child{
+  padding: 12px 16px;
+}
+
+.dropdownMenu ul li:hover {
+  background-color: rgb(24, 58, 90);
+  color: gold;
+  cursor: pointer;
+  transition: all 0.5s ease;
+}
+
+.dropdownMenu ul li span {
+  margin-right: 13px;
+  color: #102770;
+  transition: all 0.5s ease;
+}
+
+.dropdownMenu ul li a{
+  display: block;
+  width: 100%;
+  height: 100%;
+  padding: 12px 16px;
+  transition: all 0.5s ease;
+
+}
+.dropdownMenu ul li a:hover{
+  color: gold;
+}
+
+.dropdownMenu ul li:hover span {
+  color: goldenrod;
+}
+
+.profileMenu:hover .dropdownMenu{
+  height: 260px;
+  display: block;
+}
+
+.profileMenu:hover .userHeight{
+  height: 158px !important;
+}
+
+.headerNav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-inline: 6%;
+  height: 3.5rem;
+  box-shadow: 1px 0px 14px 0px rgba(0, 0, 0, 0.2);
+}
+
+.headerLogo img {
+  width: 2rem;
+}
+.headerLogo span {
+  font-size: 18px;
+  color: rgba(3, 6, 23, 0.8);
+}
+.navContainer {
+  height: inherit;
+  display: flex;
+  gap: 2rem;
+}
+
+.headerNavlist {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+  list-style: none;
+}
+
+.loginBtn {
+  background-color: rgb(20, 26, 85);
+  color: #fff;
+  border: none;
+  font-size: 13px;
+  height: fit-content;
+  padding: 4px 20px;
+  border-radius: 20px;
+  margin-top: 15px;
+}
+.headerNavlist li a span {
+  display: none;
+}
+
+.profileChild {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+/* ------- hamburger menu --------- */
+
+.hamburgerIcon {
+  width: 33px;
+  height: 25px;
+  position: relative;
+  cursor: pointer;
+  display: none;
+}
+.hamburgerIcon span {
+  background-color: #102770;
+  position: absolute;
+  border-radius: 2px;
+  transition: 0.3s cubic-bezier(0.8, 0.5, 0.2, 1.4);
+}
+.hamburgerIcon span:nth-child(1) {
+  width: 100%;
+  height: 2.5px;
+  display: block;
+  top: 0px;
+  left: 0px;
+}
+.hamburgerIcon span:nth-child(2) {
+  width: 100%;
+  height: 2.5px;
+  display: block;
+  top: 11px;
+  left: 0px;
+}
+.hamburgerIcon span:nth-child(3) {
+  width: 100%;
+  height: 2.5px;
+  display: block;
+  bottom: 0px;
+  left: 0px;
+}
+.hamburgerIcon:not(.open):hover span:nth-child(1) {
+  width: 100%;
+  height: 3px;
+  display: block;
+  top: -2px;
+  left: 0px;
+  transition: 0.3s cubic-bezier(0.8, 0.5, 0.2, 1.4);
+}
+.hamburgerIcon:not(.open):hover span:nth-child(2) {
+  width: 100%;
+  height: 3px;
+  display: block;
+  top: 13px;
+  left: 0px;
+  transition: 0.4s cubic-bezier(0.8, 0.5, 0.2, 1.4);
+}
+.hamburgerIcon:not(.open):hover span:nth-child(3) {
+  width: 100%;
+  height: 3px;
+  display: block;
+  bottom: -2px;
+  left: 0px;
+  transition: 0.3s cubic-bezier(0.8, 0.5, 0.2, 1.4);
+}
+.hamburgerIcon.open {
+  transform: rotate(-90deg);
+}
+.hamburgerIcon.open span:nth-child(1) {
+  left: 3px;
+  top: 11px;
+  width: 28px;
+  transition: 0.3s cubic-bezier(0.8, 0.5, 0.2, 1.4);
+  transform: rotate(90deg);
+  transition-delay: 150ms;
+}
+.hamburgerIcon.open span:nth-child(2) {
+  left: 1px;
+  top: 3px;
+  width: 20px;
+  transition: 0.3s cubic-bezier(0.8, 0.5, 0.2, 1.4);
+  transform: rotate(-45deg);
+  transition-delay: 50ms;
+}
+.hamburgerIcon.open span:nth-child(3) {
+  left: 14px;
+  top: 3px;
+  width: 20px;
+  transition: 0.3s cubic-bezier(0.8, 0.5, 0.2, 1.4);
+  transform: rotate(45deg);
+  transition-delay: 100ms;
+}
+
+@media (max-width: 800px) {
+  .headerNavlist {
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .hamburgerIcon {
+    display: block;
+  }
+
+  .transpWrapper{
+    height: 100%;
+    position: fixed;
+    inset: 55px 100% 0px 0px;
+    background-color:rgba(0, 0, 0, 0.3);
+    z-index: 20;
+    backdrop-filter: blur(2px);
+    transition: all 0.5s ease;
+  }
+
+  .showTransWrap{
+    inset: 55px 0 0 0;
+  }
+
+  .navContainer {
+    width: 240px;
+    position: fixed;
+    top: 55px;
+    bottom: 0;
+    left: -240px;
+    height: 100%;
+    z-index: 99;
+    transition: all 0.5s ease-in-out;
+    background-color: #f6f0ec;
+
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: start;
+    align-items: center;
+  }
+
+  .showMenuBar {
+    left: 0 !important;
+  }
+  .profileMenu {
+    margin-top: 1.6rem;
+    flex-direction: column;
+    background-color: #80dfdf;
+    padding: 10px;
+    border-radius: 5px;
+  }
+  .profileChild {
+    width: 100%;
+    display: flex;
+    margin-bottom: 2px;
+    justify-content: space-between;
+  }
+  .dropdownMenu {
+    width: max(12rem, 95%);
+    height: 11.2rem;
+    position: static;
+    border-radius: 4px;
+  }
+  .profileMenu:hover .dropdownMenu {
+    height: 11.2rem;
+  }
+
+  .profileDetails {
+    margin-top: 5px;
+    float: left;
+  }
+  .dropdownMenu::before {
+    display: none;
+  }
+  .dropdownMenu ul li a {
+    padding-block: 8px;
+  }
+  .headerNavlist {
+    width: 10rem;
+    display: flex;
+    flex-direction: column;
+  }
+  .headerNavlist li {
+    width: 100%;
+    color: #102770;
+  }
+  .headerNavlist li a span {
+    display: inline-block;
+    margin-inline: 8px 10px;
+  }
+}

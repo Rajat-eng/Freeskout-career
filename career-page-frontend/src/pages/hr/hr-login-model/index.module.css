@@ -1,0 +1,124 @@
+.loginModelContainer {
+  width: 100vw;
+  height: 100vh;
+  background-color: #e5e5e5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.loginWrapper {
+  width: 30rem;
+  background-color: white;
+  text-align: center;
+  padding: 4rem;
+  border-radius: 10px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+.loginTitle h1 {
+  font-weight: 650;
+}
+.loginTitle h6 {
+  opacity: 0.8;
+}
+.loginInput {
+  margin-top: 1rem;
+  position: relative;
+}
+.loginInput input {
+  width: 100%;
+  padding: 16px;
+  border: 1px solid rgba(100, 100, 111, 0.5);
+  border-radius: 5px;
+  font-size: 15px;
+  margin-bottom: 1.5rem;
+}
+.loginInput button {
+  cursor: pointer;
+  border: none;
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  background-color: #12633e;
+  color: white;
+  font-weight: 600;
+  padding: 16px 20px;
+  font-size: 16px;
+  border-radius: 0 5px 5px 0;
+  transition: 0.4s ease;
+}
+.loginInput button:hover {
+  color: white;
+  background-color: rgb(4, 68, 52);
+}
+.otpInput input {
+  width: 100%;
+  font-size: 16px;
+  padding: 16px;
+  border: 1px solid rgba(100, 100, 111, 0.5);
+  border-radius: 5px;
+  margin-bottom: 1.5rem;
+}
+.loginTnc {
+  display: block;
+  text-align: start;
+  padding-left: 0.4rem;
+}
+.loginTnc input {
+  margin-top: 5px;
+  margin-bottom: 12px;
+}
+.loginTnc label {
+  margin-left: 10px;
+  opacity: 0.6;
+  font-weight: 600;
+  font-size: 14px;
+}
+.loginTnc label span {
+  color: #008a4a;
+  opacity: 1;
+  cursor: pointer;
+}
+.loginBtn button {
+  width: 100%;
+  height: 3rem;
+  border: none;
+  border-radius: 5px;
+  color: white;
+}
+.loginBtn button:first-child {
+  background-color: #13c06f;
+  margin-top: 1rem;
+}
+.loginBtn button:last-child {
+  cursor: pointer;
+  margin-top: 1rem;
+  background-color: #13c06f;
+}
+.loginBtn button img {
+  width: 2rem;
+  margin-right: 1rem;
+}
+
+@media (max-width: 480px) {
+  .loginWrapper {
+    padding: 1rem;
+    width: 95%;
+  }
+  .loginTnc label {
+    width: 90%;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 300px) {
+  .loginInput input {
+    font-size: 13px;
+    padding: 12px 8px;
+  }
+  .loginInput button {
+    font-size: 14px;
+  }
+  .loginWrapper {
+    padding: 1rem 10px;
+  }
+}

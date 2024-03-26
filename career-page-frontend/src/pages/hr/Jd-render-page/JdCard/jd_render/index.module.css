@@ -1,0 +1,95 @@
+.job {
+  background-color: white;
+  /* width: min(500px, 90%); */
+  min-width: 430px;
+  padding: 30px 34px;
+  max-height: 400px;
+  border-radius: 8px;
+  box-shadow: 1px 0px 6px 0px rgba(0, 0, 0, 0.1);
+}
+
+.job_heading {
+  display: flex;
+  gap: 1.5rem;
+}
+.job_heading p {
+  color: green;
+  opacity: 0.8;
+  font-weight: 500;
+  font-size: 15px;
+}
+
+.main {
+  display: grid;
+  margin-top: 1rem;
+  gap: 1rem 2rem;
+  grid-template-columns: 1.3fr 1fr;
+}
+
+.main_component {
+  display: grid;
+  grid-template-columns: 1fr 4fr 3fr;
+}
+.main_component:nth-child(even) .two {
+  justify-self: center;
+}
+
+.one {
+  opacity: 0.7;
+  font-size: 14px;
+}
+.two {
+  font-size: 15px;
+  color: rgba(0, 0, 0, 0.8);
+}
+.icon {
+  color: green;
+  font-size: 14px;
+}
+
+.viewDetailsBtn {
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.viewDetailsBtn button {
+  color: green;
+  font-size: 14px;
+  background-color: white;
+  border-bottom: 2px dotted green;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+}
+
+@media (max-width: 1000px) {
+  .job {
+    padding: 20px 20px;
+    min-width: 300px;
+  }
+  .main {
+    grid-template-columns: 1.8fr 1fr;
+    gap: 1rem;
+  }
+  .main_component:nth-child(even) .two {
+    justify-self: end;
+  }
+}
+
+@media (max-width: 380px) {
+  .main_component {
+    grid-template-columns: 0.2fr 1fr;
+    grid-template-rows: 1fr 1fr;
+  }
+  .two {
+    grid-column: 2/3;
+  }
+  .main_component:nth-child(even) .two {
+    justify-self: start;
+    grid-template-columns: 0.4fr 1fr;
+  }
+  .main{
+    grid-template-columns: 1fr 1fr;
+
+  }
+}

@@ -1,0 +1,64 @@
+.jdInputFields {
+  width: 100%;
+  background-color: rgb(213, 233, 251);
+  padding: 3rem 10px;
+}
+.jdFieldWrapper {
+  max-width: 60rem;
+  margin: 0 auto;
+  background-color: rgb(227, 242, 255);
+  color: black;
+  padding: 2rem;
+  border-radius: 10px;
+  border: 2px dashed rgba(0, 0, 0, 0.6);
+}
+
+.title {
+  margin-bottom: 0.8rem;
+  margin-left: 1rem;
+}
+.skillsChild {
+  background-color: #316ceb;
+  padding: 6px 12px;
+  color: white;
+  font-size: 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-right: 10px;
+  text-transform: capitalize;
+}
+.skillsChildCancelBtn {
+
+  padding: 2px 6px 4px;
+  background-color: rgb(247, 89, 89);
+  font-size: 16px;
+  margin-left: 10px;
+  border-radius: 50%;
+  font-size: 15px;
+}
+.submitFormBtn {
+  margin-top: 2rem;
+  text-align: center;
+}
+.submitFormBtn button {
+  padding: 10px 30px;
+  border-radius: 5px;
+  border: none;
+  background-color: rgba(79, 70, 229, 0.9);
+  color: white;
+}
+.sideBtn{
+  background-color: rgba(79, 70, 229, 0.9);
+  color: white;
+  border: none;
+  /* height: 40px; */
+}
+
+@media (max-width: 900px) {
+  .jdFieldWrapper {
+    padding: 2rem 10px;
+  }
+  .lastApply {
+    display: none;
+  }
+}

@@ -1,0 +1,49 @@
+.mainContainer {
+  background-color: rgb(233, 245, 255);
+  padding: 2rem 6%;
+}
+
+.jdCardsContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+.title {
+  margin-bottom: 2rem;
+  opacity: 0.8;
+}
+
+.paginationContainer {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 3rem;
+}
+
+@media (max-width: 1000px) {
+  .jdCardsContainer {
+    gap: 18px;
+  }
+  .mainContainer {
+    padding: 2rem 3%;
+  }
+}
+
+@media (max-width: 774px) {
+  .jdCardsContainer {
+    grid-template-columns: 1fr;
+  }
+  .mainContainer {
+    padding: 2rem 8%;
+  }
+}
+
+@media (max-width: 540px) {
+  .mainContainer {
+    padding: 1rem 8px;
+  }
+  .title {
+    margin-bottom: 1rem;
+  }
+}

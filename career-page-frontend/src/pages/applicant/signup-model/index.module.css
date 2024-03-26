@@ -1,0 +1,137 @@
+.loginModelContainer {
+  width: 100vw;
+  height: 100vh;
+  background-color: #e5e5e5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.loginWrapper {
+  width: 30rem;
+  background-color: white;
+  text-align: center;
+  padding: 3rem;
+  border-radius: 10px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+.loginTitle h1 {
+  font-weight: 650;
+}
+.loginTitle h6 {
+  opacity: 0.8;
+  margin-bottom: 2rem;
+}
+
+.multipleInput {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+.multipleInput input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid rgba(100, 100, 111, 0.5);
+  border-radius: 5px;
+  font-size: 15px;
+}
+
+.emailInput {
+  margin-top: 1rem;
+  position: relative;
+}
+.emailInput input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid rgba(100, 100, 111, 0.5);
+  border-radius: 5px;
+  font-size: 15px;
+  padding-right: 31%;
+}
+.emailInput button {
+  cursor: pointer;
+  border: none;
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  background-color: #12633e;
+  color: white;
+  font-weight: 600;
+  padding: 10.5px 16px;
+  font-size: 15px;
+  border-radius: 0 5px 5px 0;
+  transition: 0.4s ease;
+}
+.emailInput button:hover {
+  color: white;
+  background-color: rgb(4, 68, 52);
+}
+
+.loginTnc {
+  margin-top: 1.5rem;
+  display: block;
+  text-align: start;
+  padding-left: 0.4rem;
+}
+.loginTnc input {
+  margin-top: 5px;
+  margin-bottom: 12px;
+}
+.loginTnc label {
+  margin-left: 10px;
+  opacity: 0.6;
+  font-weight: 600;
+  font-size: 14px;
+}
+.loginTnc label span {
+  color: #008a4a;
+  opacity: 1;
+  cursor: pointer;
+}
+.loginBtn button {
+  width: 100%;
+  height: 3rem;
+  border: none;
+  border-radius: 5px;
+  color: white;
+}
+.loginBtn button:first-child {
+  background-color: #13c06f;
+  margin-top: 1rem;
+}
+.loginBtn:last-child button {
+  cursor: pointer;
+  margin-top: 1rem;
+  background-color: rgba(20, 4, 79, 0.863);
+}
+.loginBtn button img {
+  width: 2rem;
+  margin-right: 1rem;
+}
+.dobInput {
+  width: max(100%, 11.5rem) !important;
+}
+
+@media (max-width: 480px) {
+  .loginTnc label {
+    width: 90%;
+    font-size: 14px;
+  }
+  .multipleInput {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 300px) {
+  .emailInput input {
+    font-size: 13px;
+    padding: 12px 8px;
+  }
+  .emailInput button {
+    font-size: 14px;
+  }
+  .loginWrapper {
+    padding: 1rem 10px;
+  }
+}

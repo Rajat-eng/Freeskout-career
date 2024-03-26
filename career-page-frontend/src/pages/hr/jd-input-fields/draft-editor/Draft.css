@@ -1,0 +1,39 @@
+.App-header {
+  background-color: #282c34;
+  min-height: 5vh;
+  font-size: calc(10px + 2vmin);
+  color: white;
+  margin-bottom: 5vh;
+  text-align: center;
+  padding: 12px;
+  /* margin-top: 5rem; */
+}
+
+.job-editior{
+  margin-top: 3rem;
+}
+.wrapper-class {
+  padding: 1rem;
+  border: 1px solid #ccc;
+}
+.editor-class {
+  background-color: lightgray;
+  padding:0 1rem;
+  border: 1px solid #ccc;
+}
+.toolbar-class {
+  border: 1px solid #ccc;
+}
+.addBtnEditior{
+  text-align:center;
+
+}
+.addBtnEditior button{
+  border: none;
+  background-color: aquamarine;
+  font-size: 14px;
+  padding:10px 30px;
+  border-radius: 5px;
+  margin-top: 2rem;
+  text-align: end;
+}
