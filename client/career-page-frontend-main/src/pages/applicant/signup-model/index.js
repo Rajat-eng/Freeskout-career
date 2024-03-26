@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate, NavLink, useLocation } from "react-router-dom";
+import { useNavigate, NavLink,useLocation } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
 import "react-toastify/dist/ReactToastify.css";
@@ -9,23 +9,16 @@ import { useRegisterApplicantMutation } from "../../../redux/api/userApi";
 const SignUpModel = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const location = useLocation();
+  const location=useLocation();
 
   const { user, isAuthenticated } = useSelector((state) => state.user);
   const jobsData = ["Developer", "Sales", "Account M", "socia Media"];
-  const inputFields = {
-    firstname: "",
-    lastname: "",
-    phone: "",
-    dob: "",
-    job: "",
-  };
+  const inputFields = { fname: "", lname: "", phone: "", dob: "", job: "" };
   const [signUpData, setSignUpData] = useState(inputFields);
   const [email, setEmail] = useState("");
   const [otp, setOtp] = useState("");
   const [isChecked, setIsChecked] = useState(false);
-  const [registerApplicant, { isLoading, isSuccess }] =
-    useRegisterApplicantMutation();
+  const [registerApplicant,{isLoading,isSuccess}]=useRegisterApplicantMutation()
 
   const signUpInputData = (e) => {
     let { name, value } = e.target;
@@ -77,11 +70,11 @@ const SignUpModel = () => {
       toast.error("Please enter OTP");
     }
 
-    if (!signUpData.firstname === "") {
+    if (!signUpData.fname === "") {
       error = true;
       toast.error("Please enter First Name");
     }
-    if (signUpData.lastname === "") {
+    if (signUpData.lname === "") {
       error = true;
       toast.error("Please enter Last Name");
     }
@@ -102,36 +95,28 @@ const SignUpModel = () => {
       toast.error("Please accept Terms and Condition");
     }
     if (!error) {
-      try {
-        const body = { ...signUpData, email, otp };
-        console.log(body);
-        const { data } = await registerApplicant(body).unwrap();
-      } catch (error) {
-        console.log(error);
-        toast.error(error.data.message);
+      try{
+        const body={email,otp}
+        const {data}=await registerApplicant(body).unwrap() 
+      }catch(error){
+        console.log(error)
+        toast.error(error.data.message)
       }
     }
   };
 
   useEffect(() => {
-    if (isSuccess === false && isAuthenticated === true) {
-      console.log(
-        "auth",
-        isAuthenticated,
-        "loc",
-        location.state,
-        "suc",
-        isSuccess
-      );
-      navigate(location.state || "/", { replace: true });
-    }
+    if (isSuccess===false && isAuthenticated===true) {
+      console.log("auth",isAuthenticated,"loc",location.state,"suc",isSuccess)
+      navigate(location.state || '/',{replace:true});
+    } 
   }, [isAuthenticated]);
 
-  useEffect(() => {
-    if (isSuccess === true) {
-      navigate(location.state || "/", { replace: true });
+  useEffect(()=>{
+    if(isSuccess===true){
+      navigate(location.state || '/',{replace:true})
     }
-  }, [isSuccess]);
+  },[isSuccess])
 
   return (
     <>
@@ -158,8 +143,8 @@ const SignUpModel = () => {
               <input
                 type="text"
                 placeholder="First Name"
-                name="firstname"
-                value={signUpData.firstname}
+                name="fname"
+                value={signUpData.fname}
                 onChange={signUpInputData}
               />
             </div>
@@ -167,8 +152,8 @@ const SignUpModel = () => {
               <input
                 type="text"
                 placeholder="Last Name"
-                name="lastname"
-                value={signUpData.lastname}
+                name="lname"
+                value={signUpData.lname}
                 onChange={signUpInputData}
               />
             </div>

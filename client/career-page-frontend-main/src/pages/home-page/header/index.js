@@ -13,37 +13,38 @@ import {
 import { TbLogout } from "react-icons/tb";
 import { GiCompass } from "react-icons/gi";
 import { useLogoutUserMutation } from "../../../redux/api/userApi";
-import Loader from "../../../components/loader";
+import Loader from '../../../components/loader';
 import { toast } from "react-toastify";
 
 const Header = () => {
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const loc = useLocation().pathname;
 
   const [mobMenu, setMobMenu] = useState(false);
-  const [logoutUser, { isLoading }] = useLogoutUserMutation();
+  const [logoutUser,{isLoading}]=useLogoutUserMutation()
 
   const { isAuthenticated, user } = useSelector((state) => state.user);
 
   const logoutAppl = async () => {
     try {
-      await logoutUser().unwrap();
-      navigate("/", { replace: true });
+     await logoutUser().unwrap()
+     navigate('/',{replace:true})
     } catch (error) {
       console.log(error);
-      toast.error(error.data.message);
+      toast.error(error.data.message)
     }
   };
 
-  if (isLoading) {
-    return <Loader />;
+  if(isLoading){
+    return <Loader />
   }
 
-  if (mobMenu) {
-    document.body.style.overflow = "hidden";
-  } else {
-    document.body.style.overflow = "auto";
+  if(mobMenu){
+    document.body.style.overflow = "hidden"
+  }else{
+    document.body.style.overflow = "auto"
   }
 
   return (
@@ -64,19 +65,14 @@ const Header = () => {
             <span></span>
             <span></span>
           </div>
-          <div
-            onClick={() => setMobMenu(false)}
-            className={`${style.transpWrapper} ${
-              mobMenu && style.showTransWrap
-            }`}
-          ></div>
+          <div onClick={()=>setMobMenu(false)} className={`${style.transpWrapper} ${mobMenu && style.showTransWrap}`}></div>
 
           <div
             className={`${style.navContainer} ${mobMenu && style.showMenuBar}`}
           >
             {loc === "/" ? (
               <ul className={style.headerNavlist}>
-                <li onClick={() => setMobMenu(false)}>
+                <li onClick={()=>setMobMenu(false)}>
                   <a href="#career">
                     <span>
                       <GiCompass />
@@ -84,7 +80,7 @@ const Header = () => {
                     Career
                   </a>
                 </li>
-                <li onClick={() => setMobMenu(false)}>
+                <li onClick={()=>setMobMenu(false)}>
                   <a href="#aboutus">
                     <span>
                       <BsFillInfoCircleFill />
@@ -92,7 +88,7 @@ const Header = () => {
                     About
                   </a>
                 </li>
-                <li onClick={() => setMobMenu(false)}>
+                <li onClick={()=>setMobMenu(false)}>
                   <a href="#contactus">
                     <span>
                       <BsHeadphones />
@@ -103,7 +99,7 @@ const Header = () => {
               </ul>
             ) : (
               <ul className={style.headerNavlist}>
-                <li onClick={() => setMobMenu(false)}>
+                <li onClick={()=>setMobMenu(false)}>
                   <NavLink to={`/`}>
                     <span>
                       <GiCompass />
@@ -111,7 +107,7 @@ const Header = () => {
                     Career
                   </NavLink>
                 </li>
-                <li onClick={() => setMobMenu(false)}>
+                <li onClick={()=>setMobMenu(false)}>
                   <NavLink to={`/`}>
                     <span>
                       <BsFillInfoCircleFill />
@@ -119,7 +115,7 @@ const Header = () => {
                     About
                   </NavLink>
                 </li>
-                <li onClick={() => setMobMenu(false)}>
+                <li onClick={()=>setMobMenu(false)}>
                   <NavLink to={`/`}>
                     <span>
                       <BsHeadphones />
@@ -134,12 +130,11 @@ const Header = () => {
                 <div className={style.profileMenu}>
                   <div className={style.profileChild}>
                     <div className={style.dp}>
-                      {user?.firstname?.slice(0, 1) +
-                        user?.lastname?.slice(0, 1)}
+                      {user?.firstname.slice(0, 1) + user?.lastname.slice(0, 1)}
                     </div>
                     <div className={style.profileDetails}>
                       <h6 className={style.profileName}>
-                        {user?.firstname}
+                        {user.firstname}
                         <span>
                           <IoMdArrowDropdown />
                         </span>
@@ -154,7 +149,7 @@ const Header = () => {
                   >
                     {user?.role === "Applicant" && (
                       <ul>
-                        <li onClick={() => setMobMenu(false)}>
+                        <li onClick={()=>setMobMenu(false)}>
                           <NavLink to={`/profile`}>
                             <span>
                               <FaUserCircle />
@@ -162,7 +157,7 @@ const Header = () => {
                             My profile
                           </NavLink>
                         </li>
-                        <li onClick={() => setMobMenu(false)}>
+                        <li onClick={()=>setMobMenu(false)}>
                           <NavLink to={`/application`}>
                             <span>
                               <FaSuitcase />
@@ -170,7 +165,7 @@ const Header = () => {
                             Application
                           </NavLink>
                         </li>
-                        <li onClick={() => logoutAppl()}>
+                        <li onClick={()=>logoutAppl()}>
                           <span>
                             <TbLogout />
                           </span>
@@ -181,7 +176,7 @@ const Header = () => {
 
                     {user?.role === "Recruiter" && (
                       <ul>
-                        <li onClick={() => setMobMenu(false)}>
+                        <li onClick={()=>setMobMenu(false)}>
                           <NavLink to={`/dashboard`}>
                             <span>
                               <FaUserCircle />
@@ -189,7 +184,7 @@ const Header = () => {
                             Dashboard
                           </NavLink>
                         </li>
-                        <li onClick={() => setMobMenu(false)}>
+                        <li onClick={()=>setMobMenu(false)}>
                           <NavLink to={`/applicant`}>
                             <span>
                               <BsFillBookmarkPlusFill />
@@ -197,7 +192,7 @@ const Header = () => {
                             Application
                           </NavLink>
                         </li>
-                        <li onClick={() => setMobMenu(false)}>
+                        <li onClick={()=>setMobMenu(false)}>
                           <NavLink to={`/jobs`}>
                             <span>
                               <FaSuitcase />
@@ -205,7 +200,7 @@ const Header = () => {
                             Jobs
                           </NavLink>
                         </li>
-                        <li onClick={() => setMobMenu(false)}>
+                        <li onClick={()=>setMobMenu(false)}>
                           <NavLink to={`/create-job`}>
                             <span>
                               <FaSuitcase />
@@ -213,7 +208,7 @@ const Header = () => {
                             Create Job
                           </NavLink>
                         </li>
-                        <li onClick={() => logoutAppl()}>
+                        <li onClick={()=>logoutAppl()}>
                           <span>
                             <TbLogout />
                           </span>
