@@ -1,4 +1,10 @@
-import React, { useEffect, useState, useMemo, Suspense, useCallback } from "react";
+import React, {
+  useEffect,
+  useState,
+  useMemo,
+  Suspense,
+  useCallback,
+} from "react";
 import style from "./index.module.css";
 import Featured_icon from "../../assets/img/Featured_icon.png";
 import { FiArrowUpRight } from "react-icons/fi";
@@ -13,8 +19,7 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Loader from "../../components/loader";
 
-const SwiperComponent = React.lazy(()=> import('./swiper'))
-
+const SwiperComponent = React.lazy(() => import("./swiper"));
 
 const Homepage = () => {
   const aboutRef = useRef(null);
@@ -39,7 +44,9 @@ const Homepage = () => {
   const [subsEmail, setSubEmail] = useState();
   const [page, setPage] = useState(1);
   const [jobsCount, setJobsCount] = useState(0);
-  const url = new URLSearchParams("http://localhost:8000/api/v1/job/find");
+  const url = new URLSearchParams(
+    "https://freeskout-career.onrender.com/api/v1/job/find"
+  );
 
   useEffect(() => {
     const initialData = {};
@@ -103,18 +110,18 @@ const Homepage = () => {
 
   const debounce = (func) => {
     let timer;
-    return function (...args){
-      const context = this
+    return function (...args) {
+      const context = this;
       if (timer) clearTimeout(timer);
       timer = setTimeout(() => {
         timer = null;
-        func.apply(context,args)
-      },1000);
-    }
-  }
+        func.apply(context, args);
+      }, 1000);
+    };
+  };
 
   // const callApi = async (value) => {
-  //   let url = `http://localhost:8000/api/v1/job/find?jobTitle=${value}&page=${page}`;
+  //   let url = `https://freeskout-career.onrender.com/api/v1/job/find?jobTitle=${value}&page=${page}`;
   //   try {
   //     let res = await fetch(url, {
   //       method: "GET",
@@ -137,7 +144,7 @@ const Homepage = () => {
 
   const debounceCallApi = useCallback(
     debounce(async (jobSearch) => {
-      let url = `http://localhost:8000/api/v1/job/find?jobTitle=${jobSearch}&page=${page}`;
+      let url = `https://freeskout-career.onrender.com/api/v1/job/find?jobTitle=${jobSearch}&page=${page}`;
       try {
         let res = await fetch(url, {
           method: "GET",
@@ -160,8 +167,6 @@ const Homepage = () => {
     []
   );
 
-
-
   useEffect(() => {
     debounceCallApi(jobSearch);
   }, [page]);
@@ -170,9 +175,7 @@ const Homepage = () => {
     return Math.ceil(jobsCount / 4);
   }, [jobsCount]);
 
-
   // console.log("page value",pageCount , 'job count' , jobs)
-
 
   return (
     <>
@@ -192,7 +195,7 @@ const Homepage = () => {
                 placeholder="Search Jobs"
                 id="job"
                 // list="jobs"
-                onChange={(e) => debounceCallApi(e.target.value) }
+                onChange={(e) => debounceCallApi(e.target.value)}
               />
               {/* <datalist id="jobs">
                 <option value="Developer" />
@@ -324,8 +327,7 @@ const Homepage = () => {
                 id="job"
                 list="jobs"
                 // onChange={(e) => setJobSearch(e.target.value)}
-                onChange={(e) => debounceCallApi(e.target.value) }
-
+                onChange={(e) => debounceCallApi(e.target.value)}
               />
               <datalist id="jobs">
                 <option value="Developer" />
@@ -415,8 +417,8 @@ const Homepage = () => {
               See what our employees says <br /> about their experience
             </div>
             <div className={style.empDetailsCards}>
-              <Suspense fallback={<Loader/>}>
-              <SwiperComponent />
+              <Suspense fallback={<Loader />}>
+                <SwiperComponent />
               </Suspense>
             </div>
           </div>

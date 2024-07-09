@@ -8,7 +8,7 @@ export async function fileUpload(file) {
   form.append("file", file);
   try {
     let res = await axios.post(
-      "http://localhost:8000/api/v1/file/upload",
+      "https://freeskout-career.onrender.com/api/v1/file/upload",
       form,
       {
         withCredentials: true,
@@ -22,8 +22,8 @@ export async function fileUpload(file) {
       res.data.result.public_id
     ) {
       return {
-        secure_url:res.data.result.secure_url,
-        public_id:res.data.result.public_id
+        secure_url: res.data.result.secure_url,
+        public_id: res.data.result.public_id,
       };
     }
 
@@ -33,6 +33,3 @@ export async function fileUpload(file) {
     return null;
   }
 }
-
-
-

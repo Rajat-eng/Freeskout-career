@@ -7,64 +7,65 @@ import { toast } from "react-toastify";
 import NoApplication from "../../../components/no-application";
 
 const MyApplication = () => {
+  const [myApplications, setMyApplication] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [hasError, setHasError] = useState(false);
 
-  const [myApplications,setMyApplication]=useState([]);
-  const [loading,setLoading]=useState(false);
-  const [hasError,setHasError]=useState(false)
-
-   const getMyApplications=async()=>{
+  const getMyApplications = async () => {
     try {
-      setLoading(true)
-      let res = await fetch(`http://localhost:8000/api/v1/application/myapplication`,{
-        method:"get",
-        headers:{
-          "Content-type":"application/json"
-        },
-        credentials:"include"
-      });
-      let data=await res.json();
-      if(!res.ok){
-        throw new MyError({message:data.message || res.statusText,status:data.statusCode || res.status})
+      setLoading(true);
+      let res = await fetch(
+        `https://freeskout-career.onrender.com/api/v1/application/myapplication`,
+        {
+          method: "get",
+          headers: {
+            "Content-type": "application/json",
+          },
+          credentials: "include",
+        }
+      );
+      let data = await res.json();
+      if (!res.ok) {
+        throw new MyError({
+          message: data.message || res.statusText,
+          status: data.statusCode || res.status,
+        });
       }
-      if(data.success){
-         setMyApplication([...data.applications])
+      if (data.success) {
+        setMyApplication([...data.applications]);
       }
-
     } catch (error) {
       console.log(error);
-      if(error instanceof MyError){
-        if(error.status>=400 && error.status<500){
-          toast.error(error.message)
-          if(error.status===401){
-            window.location.reload()
+      if (error instanceof MyError) {
+        if (error.status >= 400 && error.status < 500) {
+          toast.error(error.message);
+          if (error.status === 401) {
+            window.location.reload();
           }
-        }else if(error.status>=500){
-          setHasError(true)
+        } else if (error.status >= 500) {
+          setHasError(true);
         }
-      }else{
-        setHasError(true)
+      } else {
+        setHasError(true);
       }
-    }finally{
-    setLoading(false)
+    } finally {
+      setLoading(false);
     }
+  };
+
+  useEffect(() => {
+    getMyApplications();
+    return () => {
+      setHasError(false);
+      setLoading(false);
+    };
+  }, []);
+
+  if (hasError) {
+    return <p>Oops!! Something went wrong</p>;
   }
 
-  useEffect(()=>{
-    getMyApplications()
-    return ()=>{
-      setHasError(false)
-      setLoading(false)
-    }
-  },[])
-
-  if(hasError){
-    return (
-      <p>Oops!! Something went wrong</p>
-    )
-  }
-
-  console.log("this is my application", myApplications)
-
+  console.log("this is my application", myApplications);
 
   return (
     <>
@@ -158,9 +159,10 @@ const MyApplication = () => {
                               >
                                 {application.status === "shortlisted" ||
                                 application.status === "Scheduled"
-                                // application.status === 'rejected'
-                                  ? application.updatedAt.slice(0, 10)
-                                  : application.status === 'rejected' &&  "Processing"}
+                                  ? // application.status === 'rejected'
+                                    application.updatedAt.slice(0, 10)
+                                  : application.status === "rejected" &&
+                                    "Processing"}
                               </div>
                             </div>
                             <div
@@ -174,23 +176,29 @@ const MyApplication = () => {
                                 className={`${style.toSecHeading} ${
                                   application.isScheduled
                                     ? style.trackerHeadingActive
-                                    : application.status === 'rejected' && style.trackerHeadingRejected
+                                    : application.status === "rejected" &&
+                                      style.trackerHeadingRejected
                                 }`}
                               >
-                               {application.status === 'rejected' ? "Application Rejected" : "Interview At"}
+                                {application.status === "rejected"
+                                  ? "Application Rejected"
+                                  : "Interview At"}
                               </div>
                               <div
                                 className={`${style.toSecHeading} ${
                                   application.isScheduled
                                     ? style.trackerHeadingActive
-                                    : application.status === 'rejected' && style.trackerHeadingRejected
+                                    : application.status === "rejected" &&
+                                      style.trackerHeadingRejected
                                 }`}
                               >
                                 {application.isScheduled
                                   ? new Date(
                                       application.time
                                     ).toLocaleDateString()
-                                  : application.status === 'rejected' ? application.updatedAt.slice(0, 10) : "Processing"}
+                                  : application.status === "rejected"
+                                  ? application.updatedAt.slice(0, 10)
+                                  : "Processing"}
                               </div>
                             </div>
                           </div>
@@ -200,7 +208,8 @@ const MyApplication = () => {
                                 application.status === "shortlisted" ||
                                 application.status === "Scheduled"
                                   ? style.trackerActive
-                                  : application.status === 'rejected' && style.trackerReject
+                                  : application.status === "rejected" &&
+                                    style.trackerReject
                               }`}
                             >
                               <div
@@ -211,7 +220,8 @@ const MyApplication = () => {
                               className={`${style.trackingBar} ${
                                 application.isScheduled
                                   ? style.trackerActive
-                                  : application.status === 'rejected' && style.trackerReject
+                                  : application.status === "rejected" &&
+                                    style.trackerReject
                               } `}
                             >
                               <div
@@ -219,7 +229,8 @@ const MyApplication = () => {
                                   application.status === "shortlisted" ||
                                   application.status === "Scheduled"
                                     ? style.trackerActive
-                                    : application.status === 'rejected' && style.trackerReject
+                                    : application.status === "rejected" &&
+                                      style.trackerReject
                                 }`}
                               ></div>
                             </div>
@@ -228,7 +239,8 @@ const MyApplication = () => {
                                 className={`${style.trackingBarCircle} ${
                                   application.isScheduled
                                     ? style.trackerActive
-                                    : application.status === "rejected" && style.trackerReject
+                                    : application.status === "rejected" &&
+                                      style.trackerReject
                                 }`}
                               ></div>
                             </div>

@@ -1,4 +1,4 @@
-import React, { useEffect, useState,useMemo } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import style from "./index.module.css";
 import { HiArrowLeft } from "react-icons/hi";
 import Loader from "../../../../components/loader";
@@ -7,62 +7,65 @@ import JdRender from "./jd_render/index";
 import { toast } from "react-toastify";
 
 const JdCards = () => {
-  const [loading,setLoading]=useState(false);
-  const [error,setError]=useState(null)
-  const [jobs,setJobs]=useState([]);
-  const [jobsCount,setJobsCount]=useState(0);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const [jobs, setJobs] = useState([]);
+  const [jobsCount, setJobsCount] = useState(0);
   const [page, setPage] = useState(1);
 
-
   //const options = { day: "2-digit", month: "short", year: "numeric" };
-
 
   const allJobs = async (page) => {
     setLoading(true);
     try {
-      const res = await fetch(`http://localhost:8000/api/v1/job/find?page=${page}`,{
-        method:"get",
-        credentials:"include",
-        headers:{
-          "Content-Type":"application/json"
+      const res = await fetch(
+        `https://freeskout-career.onrender.com/api/v1/job/find?page=${page}`,
+        {
+          method: "get",
+          credentials: "include",
+          headers: {
+            "Content-Type": "application/json",
+          },
         }
-      });
+      );
       const data = await res.json();
 
       if (data.success) {
-        console.log("jobs",data)
-        setJobs([...data.jobs])
-        setJobsCount(data.jobsCount)
+        console.log("jobs", data);
+        setJobs([...data.jobs]);
+        setJobsCount(data.jobsCount);
       } else {
-         toast.error(data.message)
+        toast.error(data.message);
       }
-      setLoading(false)
+      setLoading(false);
     } catch (error) {
-      setLoading(false)
-      setError(error.response.data.message)
+      setLoading(false);
+      setError(error.response.data.message);
     }
   };
 
-  const pageCount = useMemo(()=>{
+  const pageCount = useMemo(() => {
     return Math.ceil(jobsCount / 4);
-  },[jobsCount])
+  }, [jobsCount]);
 
   useEffect(() => {
-    allJobs(page)
+    allJobs(page);
   }, [page]);
 
-  if(loading){
-    return <Loader />
+  if (loading) {
+    return <Loader />;
   }
 
-  if(error){
-    return (<p>{error}</p>)
+  if (error) {
+    return <p>{error}</p>;
   }
 
   return (
     <>
       <div className={style.mainContainer}>
-        <h6 className={style.title}><HiArrowLeft/> All Jobs Status</h6>
+        <h6 className={style.title}>
+          <HiArrowLeft /> All Jobs Status
+        </h6>
         {loading ? (
           <>
             <Loader />

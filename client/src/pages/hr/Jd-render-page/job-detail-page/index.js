@@ -30,13 +30,16 @@ const JobDetails = () => {
   const getJob = async (id) => {
     setLoading(true);
     try {
-      const res = await fetch(`http://localhost:8000/api/v1/job/${id}`, {
-        method: "get",
-        credentials: "include",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+      const res = await fetch(
+        `https://freeskout-career.onrender.com/api/v1/job/${id}`,
+        {
+          method: "get",
+          credentials: "include",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
       const data = await res.json();
       if (data.success) {
         setJob(data.job);
@@ -53,13 +56,16 @@ const JobDetails = () => {
   const submitApplication = async (id) => {
     setLoading(true);
     try {
-      let res = await fetch(`http://localhost:8000/api/v1/job/apply/${id}`, {
-        method: "post",
-        headers: {
-          "Content-type": "application/json",
-        },
-        credentials: "include",
-      });
+      let res = await fetch(
+        `https://freeskout-career.onrender.com/api/v1/job/apply/${id}`,
+        {
+          method: "post",
+          headers: {
+            "Content-type": "application/json",
+          },
+          credentials: "include",
+        }
+      );
       let data = await res.json();
       if (data.success) {
         toast.success("applicaition submitted");
@@ -98,7 +104,7 @@ const JobDetails = () => {
     };
   }
 
-  console.log("this is job",job)
+  console.log("this is job", job);
 
   const editJd = () => {
     navigate(`/jobs/edit-job/${id}`, { state: job });
@@ -107,7 +113,7 @@ const JobDetails = () => {
   const deleteJd = async () => {
     try {
       let deleteRes = await fetch(
-        `http://localhost:8000/api/v1/job/delete/${id}`,
+        `https://freeskout-career.onrender.com/api/v1/job/delete/${id}`,
         {
           method: "DELETE",
           headers: {

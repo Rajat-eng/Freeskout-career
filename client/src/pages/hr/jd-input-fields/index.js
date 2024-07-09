@@ -1,46 +1,48 @@
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import AboutCompEditor from "./draft-editor";
 import JobEditior from "./draft-editor/jobDescription";
 import style from "./index.module.css";
 import { useLocation, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
-import Loader from '../../../components/loader';
+import Loader from "../../../components/loader";
 import { FaRegTrashAlt } from "react-icons/fa";
 import MyError from "../../../utils/Error";
 
 const JdInputFields = () => {
-
   const loc = useLocation().state;
-  const {id} = useParams();
-  const [categories,setCategories]=useState([]);
-  const [loading,setLoading]=useState(false);
-  const [hasError,setHasError]=useState(false)
+  const { id } = useParams();
+  const [categories, setCategories] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [hasError, setHasError] = useState(false);
 
   const callCategory = async () => {
     try {
       setLoading(true);
-    const res = await fetch("http://localhost:8000/api/v1/category/getAll", {
-      credentials: "include",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      method: "get",
-    });
-    const data = await res.json();
-    if(!res.ok){
-      throw new MyError({message:data.message,status:data.status})
-    }
-    if (data.success) {
-      setCategories([...data.categories]);
-    }
-    setLoading(false);
-    } catch (error) {
-      if(error instanceof MyError){
-        toast.error(error.message)
-      }else{
-        setHasError(true)
+      const res = await fetch(
+        "https://freeskout-career.onrender.com/api/v1/category/getAll",
+        {
+          credentials: "include",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          method: "get",
+        }
+      );
+      const data = await res.json();
+      if (!res.ok) {
+        throw new MyError({ message: data.message, status: data.status });
       }
-      setLoading(false)
+      if (data.success) {
+        setCategories([...data.categories]);
+      }
+      setLoading(false);
+    } catch (error) {
+      if (error instanceof MyError) {
+        toast.error(error.message);
+      } else {
+        setHasError(true);
+      }
+      setLoading(false);
     }
   };
 
@@ -78,16 +80,14 @@ const JdInputFields = () => {
     jd: "",
     skills: [...(loc ? loc.skills : "")],
     perks: [...(loc ? loc.perks : "")],
-    categoryTitle: loc?loc.category.title : "",
+    categoryTitle: loc ? loc.category.title : "",
   });
-
- 
 
   const [skillsName, setSkillsName] = useState();
   const [perksName, setPerksName] = useState("");
   const [apiMethod, setApiMethod] = useState({
-    linkPost: "http://localhost:8000/api/v1/job/post",
-    linkUpdate: `http://localhost:8000/api/v1/job/update/${id}`,
+    linkPost: "https://freeskout-career.onrender.com/api/v1/job/post",
+    linkUpdate: `https://freeskout-career.onrender.com/api/v1/job/update/${id}`,
     methodPost: "POST",
     methodPut: "PUT",
   });
@@ -158,7 +158,7 @@ const JdInputFields = () => {
       toast.error("Fill the job ediitor data");
     } else {
       try {
-        setLoading(true)
+        setLoading(true);
         let jobPost = await fetch(api, {
           method: type,
           headers: {
@@ -172,8 +172,11 @@ const JdInputFields = () => {
           }),
         });
         let jobPostdata = await jobPost.json();
-        if(!jobPost.ok){
-          throw new MyError({message:jobPostdata.message,status:jobPostdata.status})
+        if (!jobPost.ok) {
+          throw new MyError({
+            message: jobPostdata.message,
+            status: jobPostdata.status,
+          });
         }
         if (jobPostdata.success) {
           toast.success(jobPostdata.message);
@@ -192,35 +195,34 @@ const JdInputFields = () => {
             perks: [],
           });
           setAboutCompEdiData("");
-        } 
-        setLoading(false)
-      } catch (error) {
-        console.log(error)
-        if(error instanceof MyError){
-          toast.error(error.message)
-        }else{
-          setHasError(true)
         }
-        setLoading(false)
+        setLoading(false);
+      } catch (error) {
+        console.log(error);
+        if (error instanceof MyError) {
+          toast.error(error.message);
+        } else {
+          setHasError(true);
+        }
+        setLoading(false);
       }
     }
   };
 
+  useEffect(() => {
+    callCategory();
+    return () => {
+      setLoading(false);
+      setHasError(false);
+    };
+  }, []);
 
-  useEffect(()=>{
-    callCategory()
-    return ()=>{
-      setLoading(false)
-      setHasError(false)
-    }
-  },[])
-
-  if(hasError){
-    return <p>Something went wrong</p>
+  if (hasError) {
+    return <p>Something went wrong</p>;
   }
 
-  if(loading){
-    return <Loader />
+  if (loading) {
+    return <Loader />;
   }
 
   return (
@@ -256,13 +258,12 @@ const JdInputFields = () => {
                   onChange={inputEvent}
                   list="category"
                 />
-               <datalist id="category">
-                  {categories.length>0 && categories.map((item,index)=>{
-                    return (
-                      <option key={index} value={item.title} />
-                    )
-                  })}
-               </datalist>
+                <datalist id="category">
+                  {categories.length > 0 &&
+                    categories.map((item, index) => {
+                      return <option key={index} value={item.title} />;
+                    })}
+                </datalist>
               </div>
               <div className="col-6 col-sm-4">
                 <input
@@ -391,8 +392,15 @@ const JdInputFields = () => {
                 {jobInput.skills.map((value, index) => {
                   return (
                     <div key={index}>
-                      <p className={style.skillsChild}>{value}{" "}
-                        <span className={style.skillsChildCancelBtn} onClick={() => dltProperty("skills", index)}> <FaRegTrashAlt /></span>
+                      <p className={style.skillsChild}>
+                        {value}{" "}
+                        <span
+                          className={style.skillsChildCancelBtn}
+                          onClick={() => dltProperty("skills", index)}
+                        >
+                          {" "}
+                          <FaRegTrashAlt />
+                        </span>
                       </p>
                     </div>
                   );
@@ -402,15 +410,15 @@ const JdInputFields = () => {
                 {jobInput.perks.map((value, index) => {
                   return (
                     <div key={index}>
-                      <p className={style.skillsChild}>{value}
-                      <span
-                        className={style.skillsChildCancelBtn}
-                        onClick={() => dltProperty("perks", index)}
-                      >
-                        <FaRegTrashAlt/>
-                      </span>
+                      <p className={style.skillsChild}>
+                        {value}
+                        <span
+                          className={style.skillsChildCancelBtn}
+                          onClick={() => dltProperty("perks", index)}
+                        >
+                          <FaRegTrashAlt />
+                        </span>
                       </p>
-
                     </div>
                   );
                 })}

@@ -18,7 +18,6 @@ import MyError from "../../../utils/Error";
 import { RiArrowUpDownLine } from "react-icons/ri";
 
 const AppliedJobs = () => {
-
   const [days, setDays] = useState("");
   const [status, setStatus] = useState(null);
   const [hasError, setHasError] = useState(false);
@@ -35,7 +34,7 @@ const AppliedJobs = () => {
 
   const navigate = useNavigate();
 
-  const ref = useRef()
+  const ref = useRef();
   const options = { day: "2-digit", month: "short", year: "numeric" };
 
   const resumeLink = (data) => {
@@ -49,7 +48,7 @@ const AppliedJobs = () => {
 
   const callApi = useCallback(async () => {
     setLoading(true);
-    let URL = `http://localhost:8000/api/v1/application/find?page=${page}`;
+    let URL = `https://freeskout-career.onrender.com/api/v1/application/find?page=${page}`;
     if (days !== "") {
       URL = URL + `&days=${days}`;
     }
@@ -64,8 +63,8 @@ const AppliedJobs = () => {
         },
       });
       const data = await res.json();
-      if(!res.ok){
-        throw new MyError({message:data.message,status:data.statusCode})
+      if (!res.ok) {
+        throw new MyError({ message: data.message, status: data.statusCode });
       }
       if (data.success) {
         if (sortedApp === 0) {
@@ -83,31 +82,32 @@ const AppliedJobs = () => {
       }
 
       setLoading(false);
-      setHasError(false)
+      setHasError(false);
     } catch (error) {
-      if(error instanceof MyError){
-        if(error.status===401){
-          toast.error(error.message)
-          setTimeout(()=>{
-            window.location.reload()
-          },1000)
+      if (error instanceof MyError) {
+        if (error.status === 401) {
+          toast.error(error.message);
+          setTimeout(() => {
+            window.location.reload();
+          }, 1000);
         }
-      }else{
-        setHasError(true)
+      } else {
+        setHasError(true);
       }
       setLoading(false);
     }
   }, [days, page, categoryId]);
 
-  const statusChange = useCallback(async (id) => {
+  const statusChange = useCallback(
+    async (id) => {
       if (!status) {
         toast.error("Please select Status");
         return;
       }
       try {
-        setLoading(true)
+        setLoading(true);
         const res = await fetch(
-          `http://localhost:8000/api/v1/application/status/${id}`,
+          `https://freeskout-career.onrender.com/api/v1/application/status/${id}`,
           {
             method: "put",
             credentials: "include",
@@ -118,56 +118,60 @@ const AppliedJobs = () => {
           }
         );
         const data = await res.json();
-        if(!res.ok){
-          throw new MyError({message:data.message,status:data.statusCode})
+        if (!res.ok) {
+          throw new MyError({ message: data.message, status: data.statusCode });
         }
-        if(data.success){
-          callApi()
+        if (data.success) {
+          callApi();
         }
         setStatus("");
-        setLoading(false)
-        setHasError(false)
+        setLoading(false);
+        setHasError(false);
       } catch (error) {
-        if(error instanceof MyError){
-          if(error.status===401){
-            toast.error(error.message)
-            window.location.reload()
+        if (error instanceof MyError) {
+          if (error.status === 401) {
+            toast.error(error.message);
+            window.location.reload();
           }
-        }else{
-          setHasError(true)
+        } else {
+          setHasError(true);
         }
         setLoading(false);
         setStatus("");
       }
-  },[status])
-
+    },
+    [status]
+  );
 
   const callCategory = async () => {
     try {
       setLoading(true);
-      const res = await fetch("http://localhost:8000/api/v1/category/getAll", {
-        credentials: "include",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        method: "get",
-      });
+      const res = await fetch(
+        "https://freeskout-career.onrender.com/api/v1/category/getAll",
+        {
+          credentials: "include",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          method: "get",
+        }
+      );
       const data = await res.json();
-      if(!res.ok){
-        throw new MyError({message:data.message,status:data.statusCode})
+      if (!res.ok) {
+        throw new MyError({ message: data.message, status: data.statusCode });
       }
       if (data.success) {
         setCategory([...data.categories]);
-        setHasError(false)
+        setHasError(false);
       }
       setLoading(false);
     } catch (error) {
-      if(error instanceof MyError){
-        if(error.status===401){
-          toast.error(error.message)
+      if (error instanceof MyError) {
+        if (error.status === 401) {
+          toast.error(error.message);
         }
-      }else{
-        setHasError(true)
+      } else {
+        setHasError(true);
       }
       setLoading(false);
     }
@@ -195,10 +199,8 @@ const AppliedJobs = () => {
     return Math.ceil(totalApplications.current / 10);
   }, [totalApplications.current]);
 
-  if(hasError){
-    return (
-      <p>Some error has occured</p>
-    )
+  if (hasError) {
+    return <p>Some error has occured</p>;
   }
 
   const toggleSort = () => {
@@ -419,11 +421,11 @@ const AppliedJobs = () => {
               )}
 
               <div>
-                { createInterModel && (
+                {createInterModel && (
                   <CreateInterviewSch
                     data={createInterModel}
                     closeModel={() => setCreateInterModel(null)}
-                    updateApi={()=>callApi()}
+                    updateApi={() => callApi()}
                   />
                 )}
               </div>

@@ -5,8 +5,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { toast } from "react-toastify";
 
-const CreateInterviewSch = ({data,closeModel,updateApi}) => {
-
+const CreateInterviewSch = ({ data, closeModel, updateApi }) => {
   const [intData, setIntData] = useState({
     interviewTime: "",
     interviewerName: "",
@@ -23,8 +22,7 @@ const CreateInterviewSch = ({data,closeModel,updateApi}) => {
   };
 
   const submitInt = async () => {
-
-    const id = data.id
+    const id = data.id;
     if (intData.interviewTime === "") {
       toast.error("please fill Date & Time");
     } else if (intData.interviewerName === "") {
@@ -32,7 +30,7 @@ const CreateInterviewSch = ({data,closeModel,updateApi}) => {
     } else {
       try {
         const res = await fetch(
-          `http://localhost:8000/api/v1/application/schedule/${id}`,
+          `https://freeskout-career.onrender.com/api/v1/application/schedule/${id}`,
           {
             credentials: "include",
             method: "post",
@@ -44,9 +42,8 @@ const CreateInterviewSch = ({data,closeModel,updateApi}) => {
         );
         const data = await res.json();
         if (data.success) {
-          updateApi(true)
-          closeModel(false)
-
+          updateApi(true);
+          closeModel(false);
         } else {
           alert("error");
         }
@@ -166,7 +163,7 @@ const CreateInterviewSch = ({data,closeModel,updateApi}) => {
               label="cancel"
               color="white"
               bgColor="#F45050"
-              onClick={()=>closeModel(false)}
+              onClick={() => closeModel(false)}
             />
           </div>
         </div>

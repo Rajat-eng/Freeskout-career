@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate, NavLink,useLocation } from "react-router-dom";
+import { useNavigate, NavLink, useLocation } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
 import "react-toastify/dist/ReactToastify.css";
@@ -9,7 +9,7 @@ import { useRegisterApplicantMutation } from "../../../redux/api/userApi";
 const SignUpModel = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const location=useLocation();
+  const location = useLocation();
 
   const { user, isAuthenticated } = useSelector((state) => state.user);
   const jobsData = ["Developer", "Sales", "Account M", "socia Media"];
@@ -18,7 +18,8 @@ const SignUpModel = () => {
   const [email, setEmail] = useState("");
   const [otp, setOtp] = useState("");
   const [isChecked, setIsChecked] = useState(false);
-  const [registerApplicant,{isLoading,isSuccess}]=useRegisterApplicantMutation()
+  const [registerApplicant, { isLoading, isSuccess }] =
+    useRegisterApplicantMutation();
 
   const signUpInputData = (e) => {
     let { name, value } = e.target;
@@ -43,16 +44,19 @@ const SignUpModel = () => {
       }
     }
     try {
-      let res = await fetch("http://localhost:8000/api/v1/applicant/sendCode", {
-        method: "post",
-        credentials: "include",
-        headers: {
-          "Content-type": "application/json",
-        },
-        body: JSON.stringify({
-          email,
-        }),
-      });
+      let res = await fetch(
+        "https://freeskout-career.onrender.com/api/v1/applicant/sendCode",
+        {
+          method: "post",
+          credentials: "include",
+          headers: {
+            "Content-type": "application/json",
+          },
+          body: JSON.stringify({
+            email,
+          }),
+        }
+      );
       let data = await res.json();
       if (data.success) {
         let pass = data.code;
@@ -95,28 +99,35 @@ const SignUpModel = () => {
       toast.error("Please accept Terms and Condition");
     }
     if (!error) {
-      try{
-        const body={email,otp}
-        const {data}=await registerApplicant(body).unwrap() 
-      }catch(error){
-        console.log(error)
-        toast.error(error.data.message)
+      try {
+        const body = { email, otp };
+        const { data } = await registerApplicant(body).unwrap();
+      } catch (error) {
+        console.log(error);
+        toast.error(error.data.message);
       }
     }
   };
 
   useEffect(() => {
-    if (isSuccess===false && isAuthenticated===true) {
-      console.log("auth",isAuthenticated,"loc",location.state,"suc",isSuccess)
-      navigate(location.state || '/',{replace:true});
-    } 
+    if (isSuccess === false && isAuthenticated === true) {
+      console.log(
+        "auth",
+        isAuthenticated,
+        "loc",
+        location.state,
+        "suc",
+        isSuccess
+      );
+      navigate(location.state || "/", { replace: true });
+    }
   }, [isAuthenticated]);
 
-  useEffect(()=>{
-    if(isSuccess===true){
-      navigate(location.state || '/',{replace:true})
+  useEffect(() => {
+    if (isSuccess === true) {
+      navigate(location.state || "/", { replace: true });
     }
-  },[isSuccess])
+  }, [isSuccess]);
 
   return (
     <>
